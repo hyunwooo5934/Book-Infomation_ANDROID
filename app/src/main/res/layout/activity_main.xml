@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="viewModel"
-            type="com.example.book.feature.main.mainViewModel" />
+            type="com.example.book.feature.main.MainViewModel" />
     </data>
 
 
@@ -31,18 +31,22 @@
             android:layout_width="92dp"
             android:layout_height="43dp"
             android:layout_marginRight="3dp"
-            android:text="검색"
             android:onClick="@{() -> viewModel.getItemList()}"
+            android:text="검색"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="409dp"
             android:layout_height="681dp"
+            android:padding="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,20 @@
 package com.example.book.model.db
 
+import com.google.gson.annotations.SerializedName
+
 data class responseList(
+    @SerializedName("lastBuildDate")
     val lastBuildDate : String,
+
+    @SerializedName("total")
     val total : String,
+
+    @SerializedName("start")
     val start : String,
+
+    @SerializedName("display")
     val display : String,
-    val data : List<bookItem>
+
+    @SerializedName("items")
+    val items : List<bookItem>
 )

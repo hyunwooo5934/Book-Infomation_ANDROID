@@ -1,11 +1,13 @@
 package com.example.book.model.network
 
 import android.provider.SyncStateContract
+import com.example.book.feature.main.mainRepository
 import com.example.book.global.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -52,6 +54,11 @@ class ApiModule {
     fun provideBookService(retrofit: Retrofit): bookService {
         return retrofit.create(bookService::class.java)
     }
+
+
+    @Provides
+    @Singleton
+    fun provideMainRepository(bookService : bookService) = mainRepository(bookService)
 
 
 }

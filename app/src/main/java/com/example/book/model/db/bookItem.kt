@@ -7,9 +7,10 @@ data class bookItem(
     val link : String,
     val image : String,
     val author : String,
-    val discount : Int,
+    val discount : String,
     val publisher : String,
-    val isbn : Int,
+    val pubdate : String,
+    val isbn : String,
     val description : String,
-    val pubdate : Date,
+
 )

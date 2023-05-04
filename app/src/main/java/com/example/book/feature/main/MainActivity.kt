@@ -2,6 +2,9 @@ package com.example.book.feature.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.SyncStateContract.Helpers.update
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 
@@ -18,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mainAdapter: MainAdapter
 
-    private val viewModel: mainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +30,16 @@ class MainActivity : AppCompatActivity() {
 
         mainAdapter = MainAdapter(this)
         binding.recyclerView.adapter = mainAdapter
+        binding.viewModel = viewModel
 
         viewModel.items.observe(this) { data ->
             data.let {
                 // 리스트 갱신작업
-
+                Log.d("MainActivity", data.toString())
+                mainAdapter.update(it)
             }
         }
-
-
-
     }
+
+
 }
