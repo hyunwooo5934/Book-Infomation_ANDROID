@@ -1,14 +1,13 @@
-package com.example.book.feature.main
+package com.example.book.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 
 import com.example.book.R
+import com.example.book.adapter.MainAdapter
 import com.example.book.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private var mBinding: ActivityMainBinding? = null
+    private lateinit var mBinding: ActivityMainBinding
     private val binding get() = mBinding!! // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
 
     private lateinit var mainAdapter: MainAdapter
@@ -39,6 +38,7 @@ class MainActivity : AppCompatActivity() {
                 mainAdapter.update(it)
             }
         }
+
     }
 
 

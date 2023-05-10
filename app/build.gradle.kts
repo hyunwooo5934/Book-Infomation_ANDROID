@@ -58,6 +58,8 @@ android {
 
 dependencies {
 
+    val roomVersion = "2.4.1"
+
     implementation ("androidx.core:core-ktx:1.8.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
     implementation ("com.google.android.material:material:1.5.0")
@@ -83,6 +85,9 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
 
 }
 

@@ -1,13 +1,12 @@
-package com.example.book.model.network
+package com.example.book.di
 
-import android.provider.SyncStateContract
-import com.example.book.feature.main.mainRepository
-import com.example.book.global.Constants
+import com.example.book.data.remote.bookService
+import com.example.book.repository.mainRepository
+import com.example.book.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -1,4 +1,4 @@
-package com.example.book.global
+package com.example.book.util
 
 object Constants {
     const val BASE_URL = "https://openapi.naver.com/"

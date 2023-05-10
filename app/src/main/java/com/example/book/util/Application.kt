@@ -1,4 +1,4 @@
-package com.example.book.global
+package com.example.book.util
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
