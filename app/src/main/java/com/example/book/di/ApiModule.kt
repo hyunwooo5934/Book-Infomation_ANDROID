@@ -1,7 +1,8 @@
 package com.example.book.di
 
+
 import com.example.book.data.remote.bookService
-import com.example.book.repository.mainRepository
+
 import com.example.book.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -15,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApiModule {
+object ApiModule {
 
     @Provides
     fun provideBaseUrl() = Constants.BASE_URL
@@ -54,10 +55,10 @@ class ApiModule {
         return retrofit.create(bookService::class.java)
     }
 
+//    @Provides
+//    @Singleton
+//    fun provideMainRepository(bookService : bookService) = mainRepository(bookService)
 
-    @Provides
-    @Singleton
-    fun provideMainRepository(bookService : bookService) = mainRepository(bookService)
 
 
 }

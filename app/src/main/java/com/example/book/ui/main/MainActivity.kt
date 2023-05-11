@@ -8,17 +8,21 @@ import androidx.databinding.DataBindingUtil
 
 import com.example.book.R
 import com.example.book.adapter.MainAdapter
+import com.example.book.adapter.searchWordAdapter
 import com.example.book.databinding.ActivityMainBinding
+import com.example.book.util.reSearchClick
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), reSearchClick {
 
     private lateinit var mBinding: ActivityMainBinding
     private val binding get() = mBinding!! // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
 
-    private lateinit var mainAdapter: MainAdapter
+    private lateinit var mainAdapter: MainAdapter // 도서목록 리스트 어댑터
+    private lateinit var searchAdapter: searchWordAdapter // 검색어 리스트 어댑터
+
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -28,15 +32,33 @@ class MainActivity : AppCompatActivity() {
         mBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         mainAdapter = MainAdapter(this)
+        searchAdapter = searchWordAdapter(this, this)
         binding.recyclerView.adapter = mainAdapter
+        binding.wordRecyclerView.adapter = searchAdapter
+
+
         binding.viewModel = viewModel
+
 
         viewModel.items.observe(this) { data ->
             data.let {
                 // 리스트 갱신작업
-                Log.d("MainActivity", data.toString())
                 mainAdapter.update(it)
             }
+        }
+
+
+        viewModel.textList.observe(this) { data ->
+            data.let {
+                searchAdapter.update(it)
+            }
+        }
+    }
+
+    override fun reSearch(word: String) {
+        binding.editText.setText(word)
+        viewModel?.let {
+            viewModel.getItemList()
         }
 
     }

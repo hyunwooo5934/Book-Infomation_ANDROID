@@ -18,16 +18,19 @@
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="300dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:ems="10"
-            android:inputType="text"
-            android:hint="검색할 책 제목을 입력 하세요"
             android:gravity="left|center"
-            android:paddingLeft="5dp"
+            android:hint="검색할 책 제목을 입력 하세요"
+            android:inputType="text"
+            android:text="@={viewModel.searchText}"
+            app:layout_constraintEnd_toStartOf="@+id/button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="@={viewModel.searchText}"/>
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"/>
+
 
 <!--        <TextView-->
 <!--            android:id="@+id/tv"-->
@@ -43,25 +46,41 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="92dp"
-            android:layout_height="43dp"
-            android:layout_marginRight="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="@{() -> viewModel.getItemList()}"
             android:text="검색"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editText"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{() -> viewModel.getItemList()}"/>
+            app:layout_constraintBottom_toTopOf="@+id/recyclerView"/>
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="409dp"
-            android:layout_height="681dp"
+            android:layout_width="410dp"
+            android:layout_height="638dp"
             android:padding="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/wordRecyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wordRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+        </androidx.recyclerview.widget.RecyclerView>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
