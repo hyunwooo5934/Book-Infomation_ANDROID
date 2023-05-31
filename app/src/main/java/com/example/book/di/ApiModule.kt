@@ -2,6 +2,7 @@ package com.example.book.di
 
 
 import com.example.book.data.remote.bookService
+import com.example.book.repository.mainRepository
 
 import com.example.book.util.Constants
 import dagger.Module

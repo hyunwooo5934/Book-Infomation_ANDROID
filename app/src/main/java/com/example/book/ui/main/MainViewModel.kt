@@ -72,13 +72,10 @@ class MainViewModel @Inject constructor(private val mainRepository: mainReposito
                         Thread.sleep(100)
                         getWord()
                     }
-
                 }
 
-
-
             }else{ // 전체조회
-                _dataList.value = mainRepository.getItemList(CLIENT_ID,CLIENT_SECRET,"text")
+                _dataList.value = mainRepository.getItemList(CLIENT_ID,CLIENT_SECRET)
             }
 
         }

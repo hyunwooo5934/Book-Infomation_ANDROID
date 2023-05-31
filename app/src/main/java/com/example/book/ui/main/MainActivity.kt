@@ -2,7 +2,6 @@ package com.example.book.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 
@@ -53,6 +52,7 @@ class MainActivity : AppCompatActivity(), reSearchClick {
                 searchAdapter.update(it)
             }
         }
+
     }
 
     override fun reSearch(word: String) {

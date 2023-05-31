@@ -12,7 +12,9 @@ interface bookService {
     suspend fun getBookList(
         @Header("X-Naver-Client-Id") id : String,
         @Header("X-Naver-Client-Secret") pwd : String,
-        @Query("query") query : String) : Response<responseList>
+        @Query("query") query : String,
+        @Query("display") display : Int,
+        @Query("start") start : Int) : Response<responseList>
 
 //    @GET("v1/search/book.json")
 //    suspend fun getBookList(

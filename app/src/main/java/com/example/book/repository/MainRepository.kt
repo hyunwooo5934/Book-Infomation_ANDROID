@@ -10,8 +10,8 @@ class mainRepository @Inject constructor(
     private val apiService: bookService,
     private val Dao: WordDao
 ) {
-    suspend fun getItemList(id: String, pwd: String, query: String): List<bookItem> {
-        val data = apiService.getBookList(id, pwd, query).body()
+    suspend fun getItemList(id: String, pwd: String, query: String, start : Int): List<bookItem> {
+        val data = apiService.getBookList(id, pwd, query,10,start).body()
         return data?.items ?: listOf()
     }
 
