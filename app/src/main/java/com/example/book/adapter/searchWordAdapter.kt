@@ -1,19 +1,13 @@
 package com.example.book.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.example.book.R
 import com.example.book.data.local.searchWord
-import com.example.book.ui.detail.DetailActivity
-import com.example.book.data.model.bookItem
 import com.example.book.util.reSearchClick
 
 class searchWordAdapter(private val context : Context, listener : reSearchClick) : RecyclerView.Adapter<searchWordAdapter.viewHolder>() {

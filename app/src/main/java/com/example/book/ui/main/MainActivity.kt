@@ -16,12 +16,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), reSearchClick {
 
-    private lateinit var mBinding: ActivityMainBinding
-    private val binding get() = mBinding!! // 매번 null 체크를 할 필요 없이 편의성을 위해 바인딩 변수 재 선언
+    private lateinit var mainBinding: ActivityMainBinding
 
-    private lateinit var mainAdapter: MainAdapter // 도서목록 리스트 어댑터
-    private lateinit var searchAdapter: searchWordAdapter // 검색어 리스트 어댑터
+    private val mainAdapter by lazy {
+        MainAdapter(this@MainActivity)
+    }
 
+    private val searchAdapter by lazy {
+        searchWordAdapter(this@MainActivity,this@MainActivity)
+    }
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -29,7 +32,6 @@ class MainActivity : AppCompatActivity(), reSearchClick {
         super.onCreate(savedInstanceState)
 
         setInit()
-
 
     }
 
@@ -39,12 +41,13 @@ class MainActivity : AppCompatActivity(), reSearchClick {
     }
 
     private fun initView(){
-        mBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-        mainAdapter = MainAdapter(this)
-        searchAdapter = searchWordAdapter(this, this)
-        binding.recyclerView.adapter = mainAdapter
-        binding.wordRecyclerView.adapter = searchAdapter
-        binding.viewModel = viewModel
+        mainBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
+        mainBinding.apply {
+            recyclerView.adapter = mainAdapter
+            wordRecyclerView.adapter = searchAdapter
+            mainViewModel = viewModel
+        }
     }
 
 
@@ -63,14 +66,14 @@ class MainActivity : AppCompatActivity(), reSearchClick {
                 }
             }
         }
-
-
     }
 
     override fun reSearch(word: String) {
-        binding.editText.setText(word)
-        viewModel?.let {
-            viewModel.getItemList()
+        mainBinding.apply {
+            editText.setText(word)
+            viewModel?.let {
+                viewModel.getItemList()
+            }
         }
     }
 

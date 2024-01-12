@@ -12,11 +12,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.example.book.R
 import com.example.book.ui.detail.DetailActivity
-import com.example.book.data.model.bookItem
+import com.example.data.model.bookItem
 
 class MainAdapter(private val context : Context) : RecyclerView.Adapter<MainAdapter.viewHolder>() {
 
-    var datas = mutableListOf<bookItem>()
+    var datas = mutableListOf<com.example.data.model.bookItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item,parent,false)
@@ -31,7 +31,7 @@ class MainAdapter(private val context : Context) : RecyclerView.Adapter<MainAdap
         holder.bind(datas.get(position))
     }
 
-    fun update(items : List<bookItem>) {
+    fun update(items : List<com.example.data.model.bookItem>) {
         datas = items.toMutableList()
         notifyDataSetChanged()
     }
@@ -44,7 +44,7 @@ class MainAdapter(private val context : Context) : RecyclerView.Adapter<MainAdap
         private val publisher : TextView = itemView.findViewById(R.id.publisher)
         private val discount : TextView = itemView.findViewById(R.id.discount)
 
-        fun bind(item: bookItem){
+        fun bind(item: com.example.data.model.bookItem){
             Glide.with(context)
                 .load(item.image)
                 .override(SIZE_ORIGINAL)

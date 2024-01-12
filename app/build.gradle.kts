@@ -58,7 +58,8 @@ android {
 
 dependencies {
 
-    val roomVersion = "2.4.1"
+    implementation(project(mapOf("path" to ":data")))
+    implementation(project(mapOf("path" to ":domain")))
 
     implementation ("androidx.core:core-ktx:1.8.0")
     implementation ("androidx.appcompat:appcompat:1.6.1")
@@ -77,13 +78,14 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // Gson 변환기
     implementation ("com.squareup.okhttp3:logging-interceptor:4.5.0")
 
+    //hilt
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     implementation ("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
 
-
+    val roomVersion = "2.4.1"
     implementation ("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.room:room-runtime:$roomVersion")
     kapt("androidx.room:room-compiler:$roomVersion")
