@@ -28,30 +28,42 @@ class MainActivity : AppCompatActivity(), reSearchClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        setInit()
 
+
+    }
+
+    private fun setInit(){
+        initView()
+        setobserver()
+    }
+
+    private fun initView(){
+        mBinding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         mainAdapter = MainAdapter(this)
         searchAdapter = searchWordAdapter(this, this)
         binding.recyclerView.adapter = mainAdapter
         binding.wordRecyclerView.adapter = searchAdapter
-
-
         binding.viewModel = viewModel
+    }
 
 
-        viewModel.items.observe(this) { data ->
-            data.let {
-                // 리스트 갱신작업
-                mainAdapter.update(it)
+    private fun setobserver(){
+        viewModel.apply {
+            textList.observe(this@MainActivity) { data ->
+                data.let {
+                    searchAdapter.update(it)
+                }
+            }
+
+            items.observe(this@MainActivity) { data ->
+                data.let {
+                    // 리스트 갱신작업
+                    mainAdapter.update(it)
+                }
             }
         }
 
-
-        viewModel.textList.observe(this) { data ->
-            data.let {
-                searchAdapter.update(it)
-            }
-        }
 
     }
 
@@ -60,8 +72,6 @@ class MainActivity : AppCompatActivity(), reSearchClick {
         viewModel?.let {
             viewModel.getItemList()
         }
-
     }
-
 
 }
