@@ -1,8 +1,6 @@
-package com.example.domain.entity
+package com.example.domain.model
 
-import java.util.Date
-
-data class bookItem(
+data class bookModel(
     val title : String,
     val link : String,
     val image : String,

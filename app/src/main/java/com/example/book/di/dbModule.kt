@@ -2,8 +2,8 @@ package com.example.book.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.book.data.local.WordDao
-import com.example.book.data.local.db.appDatabase
+import com.example.data.db.WordDao
+import com.example.data.db.appDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ object dbModule {
 
     @Provides
     @Singleton
-    fun provideappDatabase(@ApplicationContext context: Context) : appDatabase  =
+    fun provideappDatabase(@ApplicationContext context: Context) : appDatabase =
         Room.databaseBuilder(context, appDatabase::class.java, "book_test").build()
 
 

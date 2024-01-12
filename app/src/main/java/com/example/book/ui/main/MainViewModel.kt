@@ -5,7 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.db.SearchWord
+import com.example.data.db.entity.SearchWordEntity
+import com.example.domain.model.SearchWord
+import com.example.domain.model.bookModel
+import com.example.domain.usecase.MainLocalUseCase
 import com.example.domain.usecase.MainUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -17,17 +20,16 @@ import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase) : ViewModel() {
+class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase, private val mainLocalUseCase: MainLocalUseCase) : ViewModel() {
 
-    val _dataList = MutableLiveData<List<com.example.data.model.bookItem>>()
-    val items: LiveData<List<com.example.data.model.bookItem>> = _dataList
+    val _dataList = MutableLiveData<List<bookModel>>()
+    val items: LiveData<List<bookModel>> = _dataList
 
     val searchText = MutableLiveData<String>() // 검색어
 
 
     val searchWord = MutableLiveData<List<SearchWord>>() // 검색어
     val textList : LiveData<List<SearchWord>> = searchWord
-
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
@@ -53,11 +55,11 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase) : 
                 withContext(Dispatchers.IO) {
                    launch {
                         // 데이터 존재여부 체크(Y : update, N : insert)
-                        if (mainUseCase.getSelectSearchWord(searchText.value.toString()).size > 0) {
-                            mainUseCase.UpdateSearchWord(searchword)
+                        if (mainLocalUseCase.getSelectSearchWord(searchText.value.toString()).isNotEmpty()) {
+                            mainLocalUseCase.UpdateSearchWord(searchword)
                         } else {
-                            mainUseCase.InsertSearchWord(searchword)
-                            if(mainUseCase.getSearchWordList().size > 10) {
+                            mainLocalUseCase.InsertSearchWord(searchword)
+                            if(mainLocalUseCase.getSearchWordList().size > 10) {
 
                             }
 
@@ -71,17 +73,16 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase) : 
                 }
 
             }else{ // 전체조회
-                _dataList.value = mainUseCase.getItemList(CLIENT_ID,CLIENT_SECRET)
+                _dataList.value = mainUseCase.getItemList("",0)
             }
-
         }
     }
 
 
     fun getWord() {
         CoroutineScope(Dispatchers.IO).launch {
-            val wordListSize = mainUseCase.getSearchWordList()
-            if(wordListSize.size > 0 ) {
+            val wordListSize = mainLocalUseCase.getSearchWordList()
+            if(wordListSize.isNotEmpty()) {
                 searchWord.postValue(wordListSize)
             }
         }

@@ -1,10 +1,8 @@
 plugins {
     id ("com.android.application")
     id ("org.jetbrains.kotlin.android")
-//    id ("com.google.dagger.hilt.android") version ("2.44") apply true
-//    id ("kotlin-kapt")
-    kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 kotlin {
@@ -13,7 +11,7 @@ kotlin {
 
 android {
     namespace = "com.example.book"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.book"

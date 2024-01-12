@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.book.R
-import com.example.book.data.local.searchWord
 import com.example.book.util.reSearchClick
+import com.example.domain.model.SearchWord
 
 class searchWordAdapter(private val context : Context, listener : reSearchClick) : RecyclerView.Adapter<searchWordAdapter.viewHolder>() {
 
-    var datas = mutableListOf<searchWord>()
+    var datas = mutableListOf<SearchWord>()
 
     private val mCallback = listener
 
@@ -29,7 +29,7 @@ class searchWordAdapter(private val context : Context, listener : reSearchClick)
         holder.bind(datas.get(position))
     }
 
-    fun update(items : List<searchWord>) {
+    fun update(items : List<SearchWord>) {
         datas = items.toMutableList()
         notifyDataSetChanged()
     }
@@ -40,7 +40,7 @@ class searchWordAdapter(private val context : Context, listener : reSearchClick)
         private val delBtn : TextView = itemView.findViewById(R.id.delBtn)
 
 
-        fun bind(item: searchWord){
+        fun bind(item: SearchWord){
 
             wordTxt.text = item.word
 
