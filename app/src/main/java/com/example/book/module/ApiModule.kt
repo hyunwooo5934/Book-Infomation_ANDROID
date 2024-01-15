@@ -1,7 +1,6 @@
-package com.example.book.di
+package com.example.book.module
 
 
-import android.provider.SyncStateContract
 import com.example.data.api.BookService
 import com.example.data.util.Util.CLIENT_ID
 import com.example.data.util.Util.CLIENT_SECRET

@@ -11,8 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.example.book.R
-import com.example.book.ui.detail.DetailActivity
-import com.example.data.model.bookItem
+import com.example.book.presentation.screen.detail.DetailActivity
 import com.example.domain.model.bookModel
 
 class MainAdapter(private val context : Context) : RecyclerView.Adapter<MainAdapter.viewHolder>() {

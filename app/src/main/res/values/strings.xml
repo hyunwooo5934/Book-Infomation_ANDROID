@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">book</string>
+
+    <string name="main_text">검색할 책 제목을 입력하세요.</string>
+
+    <string name="main_List_item_1">제목 :</string>
+    <string name="main_List_item_2">저자 :</string>
+    <string name="main_List_item_3">출판 :</string>
+    <string name="main_List_item_4">가격 :</string>
+
 </resources>

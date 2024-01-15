@@ -1,4 +1,4 @@
-package com.example.book.di
+package com.example.book.module
 
 import com.example.data.api.BookService
 import com.example.data.db.WordDao

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="detailAct"
-            type="com.example.book.ui.detail.DetailActivity" />
+            type="com.example.book.presentation.screen.detail.DetailActivity" />
 
     </data>
 
@@ -14,7 +14,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.detail.DetailActivity">
+        tools:context=".presentation.screen.detail.DetailActivity">
 
         <WebView
             android:id="@+id/bookLinkView"

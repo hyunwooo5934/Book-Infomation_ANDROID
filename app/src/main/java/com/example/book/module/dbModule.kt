@@ -1,4 +1,4 @@
-package com.example.book.di
+package com.example.book.module
 
 import android.content.Context
 import androidx.room.Room

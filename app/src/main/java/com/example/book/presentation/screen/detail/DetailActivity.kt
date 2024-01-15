@@ -1,4 +1,4 @@
-package com.example.book.ui.detail
+package com.example.book.presentation.screen.detail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
