@@ -1,12 +1,10 @@
 package com.example.book.presentation.screen.main
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -23,28 +21,38 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.book.R
 import com.example.domain.model.bookModel
-import com.skydoves.landscapist.CircularReveal
 import com.skydoves.landscapist.glide.GlideImage
+import java.net.URLEncoder
+import kotlin.text.Charsets.UTF_8
 
 
 @Composable
-fun Mainitem(item : bookModel){
-    itemView(item)
+fun Mainitem(navController: NavController, item : bookModel){
+
+    itemView(item = item,modifier = Modifier
+        .fillMaxWidth()
+        .wrapContentHeight()
+        .padding(10.dp).clickable {
+            val link = URLEncoder.encode(item.link, UTF_8.toString())
+            navController.navigate("detail_screen/$link")
+        }
+    )
 }
 
 
-@Preview
+
 @Composable
-fun itemView(@PreviewParameter(provider::class) item : bookModel){
+fun itemView(
+    item : bookModel,
+    modifier: Modifier
+){
     Card (
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(10.dp),

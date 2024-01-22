@@ -1,6 +1,7 @@
 package com.example.book.presentation.screen.main
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +24,7 @@ fun MainScreen(navHostController: NavHostController, viewModel: MainViewModel = 
     val systemUiController = rememberSystemUiController()
     val systemBarColor = MaterialTheme.colorScheme.background
     val data = viewModel.dataList.observeAsState()
+    val edtFocus = viewModel.EdtFocusLiveData.observeAsState(initial = false)
 
     SideEffect {
         systemUiController.setSystemBarsColor(
@@ -38,9 +40,10 @@ fun MainScreen(navHostController: NavHostController, viewModel: MainViewModel = 
 
         content = {
             Column(modifier = Modifier.padding(it)) {
-                if(data.value.isNullOrEmpty().not()){
-                    MainContent(navHostController,data.value!!)
-                }
+//                if(data.value.isNullOrEmpty().not()){
+                Log.e("MainScreen",edtFocus.value.toString())
+                    MainContent(navHostController,data.value,edtFocus.value)
+//                }
             }
         }
     )

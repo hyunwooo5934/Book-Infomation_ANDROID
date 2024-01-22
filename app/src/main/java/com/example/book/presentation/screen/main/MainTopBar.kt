@@ -1,6 +1,7 @@
 package com.example.book.presentation.screen.main
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -14,6 +15,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -41,9 +44,10 @@ fun MainTopBar(viewModel : MainViewModel = hiltViewModel()){
                     placeholder = { Text(stringResource(id = R.string.main_text))},
                     textStyle = TextStyle.Default.copy(fontSize = 13.sp),
                     singleLine = true,
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = colorResource(id = R.color.white)
-                    )
+                    colors = TextFieldDefaults.textFieldColors(containerColor = colorResource(id = R.color.white)),
+                    modifier = Modifier.clickable {
+                        viewModel.textFocusOn()
+                    }
                 )
             },
 

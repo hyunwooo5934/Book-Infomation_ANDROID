@@ -1,6 +1,7 @@
 package com.example.book.presentation.screen.main
 
 import android.os.Build
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,8 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase, pr
 
     val searchText = MutableLiveData<String>() // 검색어
 
+    val _EdtFocusLiveData = MutableLiveData<Boolean>(false)
+    val EdtFocusLiveData : LiveData<Boolean> = _EdtFocusLiveData
 
     val searchWord = MutableLiveData<List<SearchWord>>() // 검색어
     val textList : LiveData<List<SearchWord>> = searchWord
@@ -84,6 +87,11 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase, pr
                 searchWord.postValue(wordListSize)
             }
         }
+    }
+
+    fun textFocusOn(){
+        Log.e("mainViewModel","textFocusOn")
+        _EdtFocusLiveData.value = true
     }
 
 
