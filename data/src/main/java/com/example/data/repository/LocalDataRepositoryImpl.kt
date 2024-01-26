@@ -27,5 +27,8 @@ class LocalDataRepositoryImpl @Inject constructor(
         return CommonMapper.itemToModel(wordDao.getSelectSearchWord(target))
     }
 
+    override suspend fun deleteSearchWord(word: String) {
+        wordDao.deleteWord(word)
+    }
 
 }

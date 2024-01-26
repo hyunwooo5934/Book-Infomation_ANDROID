@@ -23,4 +23,7 @@ interface WordDao {
     @Query("select * from SearchWord where word = :target")
     fun getSelectSearchWord(target : String) : List<SearchWordEntity>
 
+    @Query("delete from SearchWord where word = :word")
+    suspend fun deleteWord(word : String)
+
 }

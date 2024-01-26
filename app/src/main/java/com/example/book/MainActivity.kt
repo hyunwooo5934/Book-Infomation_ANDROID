@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
                 NavGraph(navHostController = navHostController)
             }
         }
-
     }
 
 }

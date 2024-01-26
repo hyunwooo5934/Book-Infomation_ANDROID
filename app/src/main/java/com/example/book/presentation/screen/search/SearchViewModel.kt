@@ -1,4 +1,4 @@
-package com.example.book.presentation.screen.main
+package com.example.book.presentation.screen.search
 
 import android.os.Build
 import android.util.Log
@@ -19,8 +19,38 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
+
 @HiltViewModel
-class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase, private val mainLocalUseCase: MainLocalUseCase) : ViewModel() {
+class SearchViewModel @Inject constructor(private val mainUseCase: MainUseCase, private val mainLocalUseCase: MainLocalUseCase
+) : ViewModel() {
+
+    var _SearchWord = MutableLiveData<List<SearchWord>>()
+    val SearchWord : LiveData<List<SearchWord>> = _SearchWord
+
+//    init {
+//        getWord()
+//    }
+
+    fun getWord(){
+        CoroutineScope(Dispatchers.IO).launch {
+            val wordListSize = mainLocalUseCase.getSearchWordList()
+            if(wordListSize.isNotEmpty()){
+                _SearchWord.postValue(wordListSize)
+                wordListSize.forEach {
+                    Log.e("SearchWordViewModel", it.word)
+                }
+            }
+        }
+    }
+
+    fun deleteWord(word : String){
+        viewModelScope.launch {
+            mainLocalUseCase.delete(word)
+            getWord()
+        }
+    }
+
+
 
     val _dataList = MutableLiveData<List<bookModel>>()
     val dataList: LiveData<List<bookModel>> = _dataList
@@ -35,7 +65,7 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase, pr
 
     init {
         CoroutineScope(Dispatchers.IO).launch {
-                getWord()
+            getWord()
         }
     }
 
@@ -55,7 +85,7 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase, pr
                 val searchword = SearchWord(currentTime.format(formatter),searchText)
 
                 withContext(Dispatchers.IO) {
-                   launch {
+                    launch {
                         // 데이터 존재여부 체크(Y : update, N : insert)
                         if (mainLocalUseCase.getSelectSearchWord(searchText).isNotEmpty()) {
                             mainLocalUseCase.UpdateSearchWord(searchword)
@@ -80,20 +110,8 @@ class MainViewModel @Inject constructor(private val mainUseCase: MainUseCase, pr
     }
 
 
-    fun getWord() {
-        CoroutineScope(Dispatchers.IO).launch {
-            val wordListSize = mainLocalUseCase.getSearchWordList()
-            if(wordListSize.isNotEmpty()) {
-                searchWord.postValue(wordListSize)
-            }
-        }
-    }
-
     fun textFocusOn(){
-        Log.e("mainViewModel","textFocusOn")
         _EdtFocusLiveData.value = true
     }
 
-
 }
-

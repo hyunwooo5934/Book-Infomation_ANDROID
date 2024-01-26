@@ -8,4 +8,5 @@ interface LocalDataRepository {
     suspend fun UpdateSearchWord(searchWord: SearchWord)
     suspend fun getSearchWordList(): List<SearchWord>
     suspend fun getSelectSearchWord(target : String): List<SearchWord>
+    suspend fun deleteSearchWord(word : String)
 }

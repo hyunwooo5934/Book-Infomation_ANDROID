@@ -25,4 +25,8 @@ class MainLocalUseCase @Inject constructor(private val localDataRepository: Loca
         return localDataRepository.getSelectSearchWord(target)
     }
 
+    suspend fun delete(word : String){
+        return localDataRepository.deleteSearchWord(word)
+    }
+
 }

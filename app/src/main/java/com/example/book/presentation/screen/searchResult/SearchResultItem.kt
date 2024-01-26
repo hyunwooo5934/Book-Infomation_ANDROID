@@ -1,4 +1,4 @@
-package com.example.book.presentation.screen.main
+package com.example.book.presentation.screen.searchResult
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
@@ -21,9 +21,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.book.R
 import com.example.domain.model.bookModel
 import com.skydoves.landscapist.glide.GlideImage
@@ -32,18 +32,25 @@ import kotlin.text.Charsets.UTF_8
 
 
 @Composable
-fun Mainitem(navController: NavController, item : bookModel){
+fun Mainitem(navController: NavHostController, item : bookModel){
 
     itemView(item = item,modifier = Modifier
         .fillMaxWidth()
         .wrapContentHeight()
-        .padding(10.dp).clickable {
+        .padding(10.dp)
+        .clickable {
             val link = URLEncoder.encode(item.link, UTF_8.toString())
             navController.navigate("detail_screen/$link")
         }
     )
 }
 
+
+//@Composable
+//@Preview
+//fun test(@PreviewParameter(strProvider::class) str : String){
+//    Text(text = "Hello Wolrd!!")
+//}
 
 
 @Composable
@@ -97,19 +104,22 @@ fun itemView(
     }
 }
 
-
-
-class provider : PreviewParameterProvider<bookModel> {
-    override val values = sequenceOf(bookModel(
-        title = "테스트1",
-        link = "https://search.shopping.naver.com/book/catalog/32466680473",
-        image = "https://shopping-phinf.pstatic.net/main_3246668/32466680473.20230926085113.jpg",
-        author = "아무개",
-        discount = "13000",
-        publisher = "테스트 출판사",
-        pubdate = "20240101",
-        isbn = "9788984314238",
-        description = "11"
-    ))
-}
+//class provider : PreviewParameterProvider<bookModel> {
+//    override val values = sequenceOf(bookModel(
+//        title = "테스트1",
+//        link = "https://search.shopping.naver.com/book/catalog/32466680473",
+//        image = "https://shopping-phinf.pstatic.net/main_3246668/32466680473.20230926085113.jpg",
+//        author = "아무개",
+//        discount = "13000",
+//        publisher = "테스트 출판사",
+//        pubdate = "20240101",
+//        isbn = "9788984314238",
+//        description = "11"
+//    ))
+//}
+//
+//
+//class strProvider : PreviewParameterProvider<String>{
+//    override val values = sequenceOf("Hello World!!!")
+//}
 

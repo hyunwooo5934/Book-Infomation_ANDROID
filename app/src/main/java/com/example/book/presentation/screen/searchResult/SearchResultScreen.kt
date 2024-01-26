@@ -1,7 +1,6 @@
-package com.example.book.presentation.screen.detail
+package com.example.book.presentation.screen.searchResult
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -9,23 +8,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import java.net.URLDecoder
-import kotlin.text.Charsets.UTF_8
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navHostController: NavHostController, webUrl : String?, viewModel: DetailViewModel = hiltViewModel()){
-
+fun SearchResultScreen(navHostController: NavHostController, searchWord : String?, viewModel: SearchResultViewModel = hiltViewModel()){
 
     val systemUiController = rememberSystemUiController()
     val systemBarColor = MaterialTheme.colorScheme.background
-
+    val data = viewModel.dataList.observeAsState()
+    val edtFocus = viewModel.EdtFocusLiveData.observeAsState(initial = false)
+    viewModel.getItemList(searchWord!!)
 
     SideEffect {
         systemUiController.setSystemBarsColor(
@@ -35,18 +34,19 @@ fun DetailScreen(navHostController: NavHostController, webUrl : String?, viewMod
 
 
     Scaffold (
+        topBar = {
+            SearchResultTopBar(navHostController = navHostController, searchWord = searchWord)
+        },
+
         content = {
-            Column(modifier = Modifier.padding(it)) {
-                if(webUrl.isNullOrEmpty().not()){
-                    val urlStr = URLDecoder.decode(webUrl!!,UTF_8.toString())
-                    Log.e("DetailScreen",urlStr)
-                    DetailContent(webUrl = urlStr)
+            Column (modifier = Modifier.padding(it)){
+                if(data.value.isNullOrEmpty().not()){
+                    SearchResultContent(navHostController, data.value)
                 }
             }
         }
     )
 
 
+
 }
-
-

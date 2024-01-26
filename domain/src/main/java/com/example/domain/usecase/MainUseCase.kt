@@ -1,17 +1,17 @@
 package com.example.domain.usecase
 
 import com.example.domain.model.bookModel
-import com.example.domain.repository.MainRepository
+import com.example.domain.repository.SearchRepository
 import javax.inject.Inject
 
-class MainUseCase @Inject constructor(private val mainRepository: MainRepository) {
+class MainUseCase @Inject constructor(private val searchRepository: SearchRepository) {
 
     suspend fun getItemList(query: String, start : Int): List<bookModel> {
-            return mainRepository.getItemList(query,start)
+            return searchRepository.getItemList(query,start)
         }
 
         suspend fun getSearchItemList(query: String): List<bookModel> {
-            return mainRepository.getSearchItemList(query)
+            return searchRepository.getSearchItemList(query)
     }
 
 }
