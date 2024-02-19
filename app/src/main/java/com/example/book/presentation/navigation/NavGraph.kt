@@ -31,7 +31,7 @@ fun NavGraph(navHostController : NavHostController){
 
         composable("search_result_screen/{word}", arguments = listOf(navArgument(name = "word"){
             type = NavType.StringType})){
-                backStackEntry -> SearchResultScreen(navHostController = navHostController, searchWord = backStackEntry.arguments?.getString("word"))
+            backStackEntry -> SearchResultScreen(navHostController = navHostController, searchWord = backStackEntry.arguments?.getString("word"))
         }
 
         composable("detail_screen/{link}", arguments = listOf(navArgument(name = "link"){

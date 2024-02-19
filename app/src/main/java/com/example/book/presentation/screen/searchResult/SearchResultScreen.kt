@@ -12,6 +12,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.book.presentation.screen.common.ErrDialog
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
@@ -23,6 +24,7 @@ fun SearchResultScreen(navHostController: NavHostController, searchWord : String
     val systemUiController = rememberSystemUiController()
     val systemBarColor = MaterialTheme.colorScheme.background
     val data = viewModel.dataList.observeAsState()
+    val errMsg = viewModel.errMSgLiveData.observeAsState()
     val edtFocus = viewModel.EdtFocusLiveData.observeAsState(initial = false)
     viewModel.getItemList(searchWord!!)
 
@@ -40,8 +42,12 @@ fun SearchResultScreen(navHostController: NavHostController, searchWord : String
 
         content = {
             Column (modifier = Modifier.padding(it)){
-                if(data.value.isNullOrEmpty().not()){
-                    SearchResultContent(navHostController, data.value)
+                if(errMsg.value.isNullOrEmpty().not()){
+                    ErrDialog(errMsg.value!!)
+                }else{
+                    if(data.value.isNullOrEmpty().not()){
+                        SearchResultContent(navHostController, data.value)
+                    }
                 }
             }
         }

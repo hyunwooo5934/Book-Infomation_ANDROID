@@ -31,7 +31,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun floatingButton(){
+fun floatingButton(onClicked: () -> Unit){
 
     var isExpanded = remember { mutableStateOf(false) }
 
@@ -40,7 +40,7 @@ fun floatingButton(){
             Column(
                 modifier = Modifier
                     .wrapContentSize()
-                    .background(color = Color.White, shape = RoundedCornerShape(10.dp))
+                    .background(color = Color.Blue, shape = RoundedCornerShape(10.dp))
                     .padding(20.dp)
             ) {
                 FabItem(
@@ -60,9 +60,11 @@ fun floatingButton(){
 
         Spacer(modifier = Modifier.height(15.dp))
         FloatingActionButton(
-            onClick = { isExpanded.value = !isExpanded.value },
+            onClick = {
+                isExpanded.value = !isExpanded.value
+                onClicked()},
             shape = CircleShape,
-            containerColor = if (isExpanded.value) Color.Red else Color.White
+            containerColor = if (isExpanded.value) Color.White else Color.White
         ) {
             Icon(
                 imageVector = if (isExpanded.value) Icons.Default.Close else Icons.Default.Add,

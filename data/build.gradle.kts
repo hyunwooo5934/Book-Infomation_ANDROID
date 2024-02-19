@@ -5,8 +5,8 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data"
-    compileSdk = 33
+    namespace = Dependency.NAMESPACE
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -37,25 +37,23 @@ dependencies {
 
     implementation(project(mapOf("path" to ":domain")))
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Dependency.KTX.CORE_KTX)
+    implementation(Dependency.AndroidX.APPCOMPAT)
+    implementation(Dependency.Google.MATERIAL)
+    testImplementation(Dependency.Test.JUNIT)
+    androidTestImplementation(Dependency.AndroidTest.ANDROIDX_TEST_JUNIT)
+    androidTestImplementation(Dependency.AndroidTest.ANDROIDX_ESPRESSO)
 
     //hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation(Dependency.Hilt.HILT)
+    kapt(Dependency.Hilt.HILT_CMOPILER)
 
     //retrofit2
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.retrofit2:adapter-rxjava2:2.8.1")
+    implementation (Dependency.Retrofit.RETROFIT) // retrofit2
+    implementation (Dependency.Retrofit.RETROFIT_CONVERTER_GSON) // Gson 변환기
 
-    //room
-    val roomVersion = "2.4.1"
-    implementation ("androidx.room:room-ktx:$roomVersion")
-    implementation("androidx.room:room-runtime:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
+    // room database
+    implementation (Dependency.Room.ROOM_KTX)
+    implementation(Dependency.Room.ROOM_RUNTIME)
+    kapt(Dependency.Room.ROOM_COMPILER)
 }

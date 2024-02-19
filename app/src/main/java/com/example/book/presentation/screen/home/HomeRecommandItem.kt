@@ -31,7 +31,7 @@ fun HomeRecommandItem(title : String){
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(10.dp),
-        colors = CardDefaults.cardColors(colorResource(id = R.color.white))
+        colors = CardDefaults.cardColors(Color.Transparent)
     ){
         Column(
             modifier = Modifier.padding(vertical = 10.dp)

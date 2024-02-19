@@ -5,8 +5,8 @@ plugins {
 }
 
 android {
-    namespace = "com.example.domain"
-    compileSdk = 33
+    namespace = Dependency.NAMESPACE
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -35,14 +35,18 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation(Dependency.KTX.CORE_KTX)
+    implementation(Dependency.AndroidX.APPCOMPAT)
+    implementation(Dependency.Google.MATERIAL)
+    testImplementation(Dependency.Test.JUNIT)
+    androidTestImplementation(Dependency.AndroidTest.ANDROIDX_TEST_JUNIT)
+    androidTestImplementation(Dependency.AndroidTest.ANDROIDX_ESPRESSO)
+
+    //retrofit2
+    implementation (Dependency.Retrofit.RETROFIT) // retrofit2
+    implementation (Dependency.Retrofit.RETROFIT_CONVERTER_GSON) // Gson 변환기
 
     //hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation(Dependency.Hilt.HILT)
+    kapt(Dependency.Hilt.HILT_CMOPILER)
 }

@@ -46,7 +46,7 @@ import com.example.book.util.view.commonView.verticalSpacer
 fun HomeTopView(navController: NavController) {
 
     Row(
-        modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp)
+        modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp).background(Color.White)
     ) {
 
         val showDaiog = remember { mutableStateOf(false) }

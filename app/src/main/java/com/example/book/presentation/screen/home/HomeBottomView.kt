@@ -35,7 +35,7 @@ import com.example.book.util.view.commonView.verticalSpacer
 fun HomeBottomView(navController: NavController) {
 
     Column(
-        modifier = Modifier.wrapContentHeight()
+        modifier = Modifier.wrapContentHeight().background(Color.White)
     ) {
 
         Spacer(modifier = Modifier
