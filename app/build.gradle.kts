@@ -11,11 +11,11 @@ kotlin {
 
 android {
     namespace = Dependency.NAMESPACE
-    compileSdk = 34
+    compileSdk = Dependency.COMPILE_SDK
 
     defaultConfig {
         applicationId = "com.example.book"
-        minSdk = 24
+        minSdk = Dependency.MIN_SDK
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -64,7 +64,6 @@ dependencies {
     implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":domain")))
 
-//    implementation ("androidx.core:core-ktx:1.9.0")
 
     implementation(Dependency.KTX.CORE_KTX)
     implementation(Dependency.AndroidX.APPCOMPAT)

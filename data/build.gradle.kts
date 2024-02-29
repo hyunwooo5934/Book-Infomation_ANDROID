@@ -6,10 +6,10 @@ plugins {
 
 android {
     namespace = Dependency.NAMESPACE
-    compileSdk = 34
+    compileSdk = Dependency.COMPILE_SDK
 
     defaultConfig {
-        minSdk = 24
+        minSdk = Dependency.MIN_SDK
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")

@@ -1,6 +1,8 @@
 object Dependency {
 
     const val NAMESPACE = "com.example.book"
+    const val COMPILE_SDK = 34
+    const val MIN_SDK = 24
 
     object KTX {
         const val CORE_KTX = "androidx.core:core-ktx:1.9.0"
