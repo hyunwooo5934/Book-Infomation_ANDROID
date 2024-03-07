@@ -56,4 +56,6 @@ dependencies {
     implementation (Dependency.Room.ROOM_KTX)
     implementation(Dependency.Room.ROOM_RUNTIME)
     kapt(Dependency.Room.ROOM_COMPILER)
+
+    implementation ("org.jsoup:jsoup:1.14.3")
 }

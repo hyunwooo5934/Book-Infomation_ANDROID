@@ -12,6 +12,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -28,6 +29,7 @@ import okhttp3.internal.wait
 fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = hiltViewModel()){
 
     var isExpanded = remember { mutableStateOf(false) }
+    val list = viewModel.bestSeller.observeAsState()
 
     Scaffold(
         modifier =
@@ -38,7 +40,9 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
 
         content = {
             Column(modifier = Modifier.padding(it)) {
-                HomeContentView()
+                list.value?.let {
+                    HomeContentView(list.value!!)
+                }
             }
         },
 

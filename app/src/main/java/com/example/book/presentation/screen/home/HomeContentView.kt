@@ -23,12 +23,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.domain.model.bestSellerModel
 
 @Composable
-fun HomeContentView(){
-
-    val itemsIndexedList = listOf("A", "B", "C", "D", "E", "F", "G")
-
+fun HomeContentView(
+    lits : List<bestSellerModel>
+){
     val scrollState = rememberScrollState()
 
 
@@ -53,7 +53,7 @@ fun HomeContentView(){
         }
 
         LazyRow {
-            itemsIndexed(itemsIndexedList){ index, item ->
+            itemsIndexed(lits){ index, item ->
                 // itemview에 매핑
                 HomeRecommandItem(item)
             }
