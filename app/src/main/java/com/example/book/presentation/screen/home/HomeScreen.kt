@@ -1,15 +1,11 @@
 package com.example.book.presentation.screen.home
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -18,10 +14,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import okhttp3.internal.wait
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -30,6 +26,23 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
 
     var isExpanded = remember { mutableStateOf(false) }
     val list = viewModel.bestSeller.observeAsState()
+    val isLoading = viewModel.loadingLiveData.observeAsState()
+
+    if(isLoading.value!!){
+        Dialog(
+            onDismissRequest = {
+//                viewModel._loadingLiveData.postValue(false)
+                               },
+            properties = DialogProperties(
+                dismissOnBackPress = true,
+                dismissOnClickOutside = true,
+            )
+        ) {
+            CircularProgressIndicator()
+        }
+
+    }
+
 
     Scaffold(
         modifier =
@@ -57,7 +70,5 @@ fun HomeScreen(navHostController: NavHostController, viewModel: HomeViewModel = 
             floatingButton(onClicked = { isExpanded.value = !isExpanded.value })
         },
 
-
     )
-
 }

@@ -13,10 +13,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.book.R
 import com.example.domain.model.SearchWord
-import java.time.format.TextStyle
 
 @Composable
 fun SearchContent(navHostController: NavHostController, dataList : List<SearchWord>){
