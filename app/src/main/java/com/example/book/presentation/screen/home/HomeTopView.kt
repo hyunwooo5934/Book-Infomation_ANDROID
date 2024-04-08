@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.book.R
 import com.example.book.presentation.navigation.Screen
@@ -43,7 +44,7 @@ import com.example.book.util.view.commonView.verticalSpacer
 
 
 @Composable
-fun HomeTopView(navController: NavController) {
+fun HomeTopView(navController: NavController, viewModel: HomeViewModel = hiltViewModel()) {
 
     Row(
         modifier = Modifier.padding(vertical = 10.dp, horizontal = 10.dp).background(Color.White)
@@ -66,6 +67,7 @@ fun HomeTopView(navController: NavController) {
             ) {
                 IconButton(onClick = {
                     navController.navigate(Screen.Search.route)
+                    viewModel.getBestSellerList()
                 }) {
                     Icon(
                         imageVector = Icons.Filled.Search,
@@ -74,6 +76,7 @@ fun HomeTopView(navController: NavController) {
                 }
 
                 Text(text = stringResource(id = R.string.main_text))
+//                Text(text = "1")
 
                 IconButton(onClick = { /* TODO */ }) {
                     Icon(
@@ -85,7 +88,9 @@ fun HomeTopView(navController: NavController) {
         }
 
 
-        IconButton(onClick = { /* TODO */ }) {
+        IconButton(onClick = {
+            viewModel.readValue()
+        }) {
             Icon(
                 imageVector = Icons.Filled.Add,
                 contentDescription = "dummy1"
@@ -93,7 +98,8 @@ fun HomeTopView(navController: NavController) {
         }
 //
         IconButton(onClick = {
-            showDaiog.value = true
+//            showDaiog.value = true
+            viewModel.writeValue("test11")
         }) {
             Icon(
                 imageVector = Icons.Filled.Home,

@@ -17,7 +17,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchScreen(navHostController: NavHostController, searchWord : String?= null, viewModel: SearchViewModel = hiltViewModel()){
+fun SearchScreen(navHostController: NavHostController, viewModel: SearchViewModel = hiltViewModel()){
 
     val systemUiController = rememberSystemUiController()
     val systemBarColor = MaterialTheme.colorScheme.background

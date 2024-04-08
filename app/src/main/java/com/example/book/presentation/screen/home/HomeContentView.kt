@@ -1,6 +1,7 @@
 package com.example.book.presentation.screen.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,10 +22,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import com.example.book.util.view.commonView.WebViewPage
 import com.example.domain.model.bestSellerModel
+import java.net.URLEncoder
 
 @Composable
 fun HomeContentView(
+    navHostController: NavHostController,
     lits : List<bestSellerModel>
 ){
     val scrollState = rememberScrollState()
@@ -42,7 +47,10 @@ fun HomeContentView(
                 .padding(start = 10.dp)
         ){
             Text(text = "추천 Book")
-            IconButton(onClick = { /* TODO */ }) {
+            IconButton(onClick = {
+                val link = URLEncoder.encode("https://www.bookprice.co.kr/best.jsp", Charsets.UTF_8.toString())
+                navHostController.navigate("detail_screen/$link")
+            }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
                     contentDescription = "search"
@@ -51,13 +59,10 @@ fun HomeContentView(
         }
 
         LazyRow {
-            itemsIndexed(lits){ index, item ->
+            itemsIndexed(lits){ _, item ->
                 // itemview에 매핑
                 HomeRecommandItem(item)
             }
         }
     }
-
-
-
 }

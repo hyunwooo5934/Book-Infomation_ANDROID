@@ -20,7 +20,7 @@ import kotlin.text.Charsets.UTF_8
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navHostController: NavHostController, webUrl : String?, viewModel: DetailViewModel = hiltViewModel()){
+fun DetailScreen(webUrl : String?){
 
 
     val systemUiController = rememberSystemUiController()

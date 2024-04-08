@@ -60,15 +60,21 @@ fun SearchResultTopBar(navHostController: NavHostController, searchWord : String
                 TextField(
                     value = textState.value,
                     onValueChange = { textValue -> textState.value = textValue },
-                    placeholder = { Text(stringResource(id = R.string.main_text))},
+                    placeholder = {
+                        Text(text = stringResource(id = R.string.main_text))
+//                        Text(text = "1")
+                                  },
                     textStyle = TextStyle.Default.copy(fontSize = 13.sp),
                     singleLine = true,
                     colors = TextFieldDefaults.textFieldColors(
-                        containerColor = colorResource(id = R.color.white),
+//                        containerColor = colorResource(id = R.color.white),
+                        containerColor = Color.White,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent
                     ),
-                    modifier = Modifier.clickable { viewModel.textFocusOn() }.focusRequester(focusRequester),
+                    modifier = Modifier
+                        .clickable { viewModel.textFocusOn() }
+                        .focusRequester(focusRequester),
                     keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions(onSearch = {
                         val word = URLEncoder.encode(textState.value, Charsets.UTF_8.toString())

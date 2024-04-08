@@ -15,14 +15,7 @@ import com.example.book.R
 import com.example.domain.model.bookModel
 
 @Composable
-fun SearchResultContent(navHostController: NavHostController, dataList: List<bookModel>?, focusable: Boolean = false) {
-//    if(focusable){
-//        Log.e("MainContent","$focusable, SearchList")
-//        SearchList(focusable)
-//    } else {
-//        Log.e("MainContent","$focusable, MainList")
-//        MainList(dataList = dataList)
-//    }
+fun SearchResultContent(navHostController: NavHostController, dataList: List<bookModel>?) {
 
     SearchList(navHostController = navHostController, dataList = dataList)
 
@@ -40,7 +33,7 @@ fun SearchList(
         var listState = rememberLazyListState()
         LazyColumn(state =  listState){
             dataList?.let {
-                itemsIndexed(dataList!!){ index, item ->
+                itemsIndexed(dataList!!){ _, item ->
                     // item compose 연결
                     Mainitem(navController = navHostController, item = item)
                 }

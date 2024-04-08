@@ -43,7 +43,7 @@ fun SearchResultTopBar(
                     fontSize = 15.sp,
                     modifier = Modifier
                         .clickable {
-                            val word = URLEncoder.encode(searchWord!!, Charsets.UTF_8.toString())
+                            val word = URLEncoder.encode(searchWord, Charsets.UTF_8.toString())
                             navHostController.navigate("search_screen/$word")
                         }
                 )

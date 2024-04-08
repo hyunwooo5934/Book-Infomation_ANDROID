@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun HomeBottomView(navController: NavController) {
+fun HomeBottomView() {
 
     Column(
         modifier = Modifier.wrapContentHeight().background(Color.White)

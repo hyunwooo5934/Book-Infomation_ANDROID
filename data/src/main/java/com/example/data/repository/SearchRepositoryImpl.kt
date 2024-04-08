@@ -15,12 +15,12 @@ class SearchRepositoryImpl @Inject constructor(private val bookService: BookServ
 
     override suspend fun getItemList(query: String, start: Int): Flow<ApiResult<List<bookModel>>> = safeFlow {
         val data = bookService.getBookList(query,10,start)
-        CommonMapper.bookMapper(data?.items ?: listOf())
+        CommonMapper.bookMapper(data.items)
     }
 
     override suspend fun getSearchItemList(query: String): Flow<ApiResult<List<bookModel>>> = safeFlow {
         val data = bookService.getBookSearchList(query)
-        CommonMapper.bookMapper(data?.items ?: listOf())
+        CommonMapper.bookMapper(data.items)
     }
 
 

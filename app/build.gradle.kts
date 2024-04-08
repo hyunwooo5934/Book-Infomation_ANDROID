@@ -2,6 +2,7 @@ plugins {
     id ("com.android.application")
     id ("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
     kotlin("kapt")
 }
 
@@ -19,8 +20,9 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -112,7 +114,7 @@ dependencies {
     implementation ("androidx.compose.runtime:runtime-livedata:1.3.3")
     implementation ("com.google.accompanist:accompanist-coil:0.13.0")
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.17.0")
-    implementation ("androidx.navigation:navigation-compose:2.5.3")
+    implementation ("androidx.navigation:navigation-compose:2.7.6")
 
 
     //Gilde
@@ -120,6 +122,9 @@ dependencies {
     implementation ("com.github.skydoves:landscapist-glide:1.4.7")
     implementation ("org.jsoup:jsoup:1.14.3")
 
+    implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-database-ktx")
 }
 
 kapt {

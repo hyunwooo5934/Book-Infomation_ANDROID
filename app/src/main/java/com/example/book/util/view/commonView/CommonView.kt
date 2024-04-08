@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,9 +32,11 @@ import androidx.compose.ui.window.DialogProperties
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun WebViewPage(url: String){
-
     //..........................................................................custom full screen dialog
     val loaderDialogScreen = remember { mutableStateOf(false) }
+    val backEnabled = remember { mutableStateOf(false) }
+    var webView : WebView? = null
+
     if (loaderDialogScreen.value) {
 
         // Dialog function
@@ -119,6 +122,7 @@ fun WebViewPage(url: String){
                         super.onPageStarted(view, url, favicon)
                         // show dialog
                         loaderDialogScreen.value = true
+                        backEnabled.value = view!!.canGoBack()
                     }
 
                     override fun onPageFinished(view: WebView?, url: String?) {
@@ -129,8 +133,20 @@ fun WebViewPage(url: String){
                 }
 
                 loadUrl(url)
+                webView = this
+
             }
         }, update = {
-            it.loadUrl(url)
+            webView = it
+//            it.loadUrl(url)
         })
+
+    BackHandler(enabled = backEnabled.value) {
+        if (webView!!.canGoBack()) {
+            webView?.goBack()
+        }
+    }
+
+
+
 }

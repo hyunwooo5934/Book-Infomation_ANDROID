@@ -63,7 +63,7 @@ fun itemView(
             .wrapContentHeight()
             .padding(10.dp),
         border = BorderStroke(1.dp,MaterialTheme.colorScheme.primary),
-        colors = CardDefaults.cardColors(colorResource(id = R.color.white))
+//        colors = CardDefaults.cardColors(colorResource(id = com.example.book.R.color.white))
     ){
         Row{
             GlideImage(
@@ -81,21 +81,25 @@ fun itemView(
             ){
                 Row {
                     Text(text = stringResource(id = R.string.main_List_item_1))
+//                    Text(text = "1")
                     Text(text = item.title, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 }
 
                 Row {
                     Text(text = stringResource(id = R.string.main_List_item_2))
+//                    Text(text = "1")
                     Text(text = item.author, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 }
 
                 Row {
                     Text(text = stringResource(id = R.string.main_List_item_3))
+//                    Text(text = "1")
                     Text(text = item.publisher, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 }
 
                 Row {
                     Text(text = stringResource(id = R.string.main_List_item_4))
+//                    Text(text = "1")
                     Text(text = item.discount, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 }
             }

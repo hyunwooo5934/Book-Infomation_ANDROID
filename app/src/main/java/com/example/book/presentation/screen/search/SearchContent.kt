@@ -36,8 +36,8 @@ fun SearchList(
 
         var listState = rememberLazyListState()
         LazyColumn(state =  listState){
-            dataList?.let {
-                itemsIndexed(dataList!!){ index, item ->
+            dataList.let {
+                itemsIndexed(dataList){ _, item ->
                     SearchItem(navController = navHostController, item = item)
                 }
             }
